@@ -1,0 +1,11 @@
+name = "Simple Hugo Theme"
+license = "MIT"
+licenselink = "https://github.com/GoudronViande24/simple-hugo-theme/blob/main/LICENSE"
+description = "Simple theme for Hugo, made by GoudronViande24 with Bootstrap 5."
+homepage = "https://github.com/GoudronViande24/simple-hugo-theme"
+tags = ["Simple", "Clean", "Modern", "Bootstrap", "Bootstrap 5"]
+min_version = "0.41.0"
+
+[author]
+  name = "GoudronViande24"
+  homepage = "https://github.com/GoudronViande24"
