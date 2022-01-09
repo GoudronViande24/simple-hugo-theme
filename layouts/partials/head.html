@@ -1,8 +1,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="color-scheme" content="dark light">
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap-unlit.min.css">
+	{{/*  Dark theme support  */}}
+	<meta name="color-scheme" content="light dark">
+	<meta name="theme-color" content="#111111" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#eeeeee" media="(prefers-color-scheme: dark)">
+
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap-dark.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap-icons/bootstrap-icons.css">
 	<link rel="stylesheet" type="text/css" href="/css/style.min.css">
 	{{ $title := print .Site.Title " | " .Title }}
