@@ -1,2 +1,5 @@
 <script src="/js/bootstrap.bundle.min.js"></script>
 <script src="/js/scripts.min.js"></script>
+{{ range .Site.Params.customJS }}
+<script src="{{ . }}"></script>
+{{ end }}

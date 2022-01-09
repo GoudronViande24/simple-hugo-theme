@@ -1,10 +1,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<meta name="color-scheme" content="dark light">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap-unlit.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap-icons/bootstrap-icons.css">
 	<link rel="stylesheet" type="text/css" href="/css/style.min.css">
 	{{ $title := print .Site.Title " | " .Title }}
 	{{ if .IsHome }}{{ $title = .Site.Title }}{{ end }}
 	<title>{{ $title }}</title>
+	<link rel="shortcut icon" href="{{ .Site.Params.favicon }}" type="image/png">
+	<link rel="apple-touch-icon" href="{{ .Site.Params.favicon }}">
+
+	{{ range .Site.Params.customCSS }}
+	<link rel="stylesheet" type="text/css" href="{{ . }}">
+	{{ end }}
 </head>
