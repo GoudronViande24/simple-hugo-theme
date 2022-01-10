@@ -1,1 +1,9 @@
-<p class="footer text-center">© {{ now.Format "2006"}} {{ name }}</p>
+<div class="container">
+	<p class="footer text-center border-top py-3 mt-4">
+		© {{ now.Format "2006"}} <a href="{{ .Site.Params.copyrightURL }}" target="_blank">{{ .Site.Params.copyright }}</a>
+		{{ if .Site.Params.showCredit }}
+		· {{ .Site.Params.texts.theme }}: <a href="https://github.com/GoudronViande24/simple-hugo-theme" target="_blank"
+			rel="noopener noreferrer">Simple Hugo Theme</a>
+		{{ end }}
+	</p>
+</div>

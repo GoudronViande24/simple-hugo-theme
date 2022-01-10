@@ -1,0 +1,8 @@
+{{ with .Params.tags }}
+<div style="line-height: 35px;">
+	{{ range . }}
+	{{ $href := print (absURL "tags/") (urlize .) }}
+	<a role="button" href="{{ $href }}" class="btn btn-sm btn-outline-secondary">{{ . }}</a>
+	{{ end }}
+</div>
+{{ end }}

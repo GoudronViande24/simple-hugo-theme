@@ -1,4 +1,8 @@
 /*
-	Custom CSS goes here
+	Theme CSS goes here
 	Do not forget to minify this file into style.min.css!
 */
+
+#content {
+	min-height: 75vh;
+}
