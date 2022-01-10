@@ -1,0 +1,14 @@
+{{ define "main" }}
+<div class="container text-center">
+	<div class="p-4 p-md-5 mb-4 text-light rounded bg-dark">
+		<h1 class="text-white">{{ .Title }}</h1>
+	</div>
+
+	<div id="tags">
+		{{ range .Pages.ByPublishDate.Reverse }}
+		{{ $href := print (absURL "tags/") (urlize .) }}
+		<a role="button" href="{{ $href }}" class="btn btn-xl btn-primary">{{ .Title }}</a>
+		{{ end }}
+	</div>
+</div>
+{{ end }}

@@ -1,12 +1,56 @@
 {{ define "main" }}
-<h1>{{ .Title }}</h1>
-{{ range .Pages.ByPublishDate.Reverse }}
-<p>
-    <h3><a class="title" href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-    {{ partial "metadata.html" . }}
-    <a class="summary" href="{{ .RelPermalink }}">
-        <p>{{ .Summary }}</p>
-    </a>
-</p>
-{{ end }}
+<div class="container">
+	<div class="p-4 p-md-5 mb-4 text-light rounded bg-dark">
+		<h1 class="text-white text-center">{{ .Title }}</h1>
+	</div>
+
+	{{ if eq .Site.Params.lists.template "boxes" }}
+	<div class="row text-start mb-4" id="posts">
+		{{ range .Pages.ByPublishDate.Reverse }}
+		<div class="col-sm-4">
+			<div class="card">
+				<img src="{{ if .Params.thumbnail }}{{ .Params.thumbnail }}{{ else }}/placeholder.svg{{ end }}" class="card-img-top" alt="">
+				<div class="card-body">
+					<h5 class="card-title">{{ .Title }}</h5>
+					{{ partial "date" . }}
+					<p class="card-text">{{ .Summary }}</p>
+					<div class="row">
+						<div class="col-md-6 d-flex align-items-center">
+							{{ partial "tags" . }}
+						</div>
+						<div class="col-md-6 d-flex align-items-center">
+							<a href="{{ .RelPermalink }}" class="btn btn-primary text-uppercase ms-auto">{{ .Site.Params.texts.read_more }} <i class="bi bi-chevron-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{ end }}
+	</div>
+	{{ else if eq .Site.Params.lists.template "list"}}
+	<div id="posts" class="text-start">
+		{{ range .Pages.ByPublishDate.Reverse }}
+			<div class="row my-4">
+				<div class="col-md-4">
+					<img src="{{ if .Params.thumbnail }}{{ .Params.thumbnail }}{{ else }}/placeholder.svg{{ end }}" class="img-fluid rounded-start" alt="">
+				</div>
+				<div class="col-md-8 py-2 d-flex flex-column justify-content-between">
+					<div class="align-self-start">
+						<h5 class="card-title">{{ .Title }}</h5>
+						{{ partial "date" . }}
+						<p class="card-text">{{ .Summary }}</p>
+					</div>
+					<div class="align-self-end d-flex" style="width: 100%;">
+						{{ partial "tags" . }}
+						<a href="{{ .RelPermalink }}" class="btn btn-primary text-uppercase ms-auto">{{ .Site.Params.texts.read_more }} <i class="bi bi-chevron-right"></i></a>
+					</div>
+				</div>
+			</div>
+		{{ end }}
+	</div>
+
+	{{ else }}
+	{{ errorf "Params.list.template has an invalid value. Refer to theme documentation to get a list of accepted values." }}
+	{{ end }}
+</div>
 {{ end }}

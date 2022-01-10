@@ -1,21 +1,21 @@
 {{ define "main" }}
-<div class="container">
+<div class="container text-center">
 
-	<div class="p-4 p-md-5 mb-4 text-light text-center rounded bg-dark">
+	<div class="p-4 p-md-5 mb-4 text-light rounded bg-dark">
 		<h1 class="text-white">{{ .Site.Params.homepage.title }}</h1>
 		<p>{{ .Site.Params.homepage.description }}</p>
 	</div>
 
-	<h2 class="text-center mb-4">{{ .Site.Params.texts.latest_posts }}</h2>
+	<h2 class="mb-4">{{ .Site.Params.texts.latest_posts }}</h2>
 	{{ if eq .Site.Params.homepage.template "boxes" }}
-	<div class="row" id="latest-posts">
+	<div class="row text-start mb-4" id="latest-posts">
 		{{ range ( where .Site.RegularPages "Type" "posts" | first 3 ) }}
 		<div class="col-sm-4">
 			<div class="card">
 				<img src="{{ if .Params.thumbnail }}{{ .Params.thumbnail }}{{ else }}/placeholder.svg{{ end }}" class="card-img-top" alt="">
 				<div class="card-body">
 					<h5 class="card-title">{{ .Title }}</h5>
-					{{ partial "date-muted" . }}
+					{{ partial "date" . }}
 					<p class="card-text">{{ .Summary }}</p>
 					<div class="row">
 						<div class="col-md-6 d-flex align-items-center">
@@ -31,7 +31,7 @@
 		{{ end }}
 	</div>
 	{{ else if eq .Site.Params.homepage.template "list"}}
-	<div id="latest-posts">
+	<div id="latest-posts" class="text-start">
 		{{ range ( where .Site.RegularPages "Type" "posts" | first 3 ) }}
 			<div class="row my-4">
 				<div class="col-md-4">
@@ -40,7 +40,7 @@
 				<div class="col-md-8 py-2 d-flex flex-column justify-content-between">
 					<div class="align-self-start">
 						<h5 class="card-title">{{ .Title }}</h5>
-						{{ partial "date-muted" . }}
+						{{ partial "date" . }}
 						<p class="card-text">{{ .Summary }}</p>
 					</div>
 					<div class="align-self-end d-flex" style="width: 100%;">
@@ -55,5 +55,7 @@
 	{{ else }}
 	{{ errorf "Params.homepage.template has an invalid value. Refer to theme documentation to get a list of accepted values." }}
 	{{ end }}
+
+	<a href="/posts" class="btn btn-lg btn-dark">{{ .Site.Params.texts.see_all }} <i class="bi bi-plus-lg"></i></a>
 </div>
 {{ end }}

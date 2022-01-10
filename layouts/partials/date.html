@@ -1,6 +1,8 @@
+{{ if .PublishDate }}
 {{ $dateTime := .PublishDate.Format "02-01-2006" }}
 {{ $dateFormat := .Site.Params.dateFormat | default "Jan 2 2006" }}
 <p class="text-muted">
 	<i class="bi bi-calendar-event-fill"></i>
 	<time datetime="{{ $dateTime }}">{{ .PublishDate.Format $dateFormat }}</time>
 </p>
+{{ end }}

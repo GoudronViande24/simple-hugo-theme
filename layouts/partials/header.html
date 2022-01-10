@@ -1,14 +1,54 @@
 <div id="nav-border" class="container">
+	{{ if eq .Site.Params.menuTemplate "centered" }}
 	<nav id="nav" class="py-3 mb-4 border-bottom nav justify-content-center">
-			{{ range .Site.Menus.main }}
-			<a class="nav-link" href="{{ .URL }}">
+		{{ range .Site.Menus.main }}
+		<a class="nav-link" href="{{ .URL }}">
 			{{ if .Pre }}
 			{{ $icon := printf "<i class=\"%s\"></i> " .Pre | safeHTML }}
 			{{ $icon }}
 			{{ end }}
 			{{ $text := print .Name | safeHTML }}
 			{{ $text }}
+		</a>
+		{{ end }}
+	</nav>
+
+	{{ else if eq .Site.Params.menuTemplate "title" }}
+	<nav id="nav" class="py-3 mb-4 border-bottom navbar container">
+		<div class="navbar-brand">{{ .Site.Params.menuTitle }}</div>
+		<div class="d-flex">
+			{{ range .Site.Menus.main }}
+			<a class="nav-link" href="{{ .URL }}">
+				{{ if .Pre }}
+				{{ $icon := printf "<i class=\"%s\"></i> " .Pre | safeHTML }}
+				{{ $icon }}
+				{{ end }}
+				{{ $text := print .Name | safeHTML }}
+				{{ $text }}
 			</a>
 			{{ end }}
+		</div>
 	</nav>
+
+	{{ else if eq .Site.Params.menuTemplate "logo" }}
+	<nav id="nav" class="py-3 mb-4 border-bottom navbar container">
+		<div class="navbar-brand">
+			<img src="{{ .Site.Params.menuLogo }}" alt="Logo" {{ if .Site.Params.menuLogoMaxHeight}} style="max-height: {{ .Site.Params.menuLogoMaxHeight }}"{{ end }}>
+		</div>
+		<div class="d-flex">
+			{{ range .Site.Menus.main }}
+			<a class="nav-link" href="{{ .URL }}">
+				{{ if .Pre }}
+				{{ $icon := printf "<i class=\"%s\"></i> " .Pre | safeHTML }}
+				{{ $icon }}
+				{{ end }}
+				{{ $text := print .Name | safeHTML }}
+				{{ $text }}
+			</a>
+			{{ end }}
+		</div>
+	</nav>
+	{{ else }}
+	{{ errorf "Params.menuTemplate has an invalid value. Refer to theme documentation to get a list of accepted values." }}
+	{{ end }}
 </div>
